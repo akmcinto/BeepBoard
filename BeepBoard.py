@@ -24,11 +24,15 @@ key = None
 
 def OnKeyboardEvent(event):
     key = event.Ascii
+    if key is 27:
+        quit()
     num = key - 97
-    if num in range(0, 26):
-        freq = 750 + (num * 25)
+    if key in range(97, 123):
+        freq = 750 + ((key - 97) * 25)
         winsound.Beep(freq, dur)
-    # logging.log(10,chr(event.Ascii))s
+    else if key in range(0, 26):
+        freq = 750 + ((key - 65) * 25)
+        winsound.Beep(freq, dur)
     return True
 
 hooks_manager = pyHook.HookManager()
