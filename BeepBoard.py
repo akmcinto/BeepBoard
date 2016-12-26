@@ -1,37 +1,23 @@
 import winsound, string
-# from msvcrt import getch
-import pyHook, pythoncom, sys, logging
+# http://www.instructables.com/id/Simple-Keylogger-Python/?ALLSTEPS
+import pyHook, pythoncom
 
-# import win32api # pypiwin32
-# import win32console
-# import win32gui
-# import pythoncom, pyHook
-
-# # alph = list(string.ascii_lowercase)
-# # nums = list(i for i in range(len(alph)))
-# # an_dict = dict(zip(alph, nums))
-#ad
 dur = 100
 key = None
-#
-# while key is not 27:
-#     key = ord(getch())
-#     num = key - 97
-#
-#     if num in range(0, 26):
-#         freq = 750 + (num * 25)
-#         winsound.Beep(freq, dur)
 
 def OnKeyboardEvent(event):
     key = event.Ascii
+    print(key)
     if key is 27:
         quit()
-    num = key - 97
     if key in range(97, 123):
-        freq = 750 + ((key - 97) * 25)
+        freq = 650 + ((key - 97) * 50)
         winsound.Beep(freq, dur)
-    else if key in range(0, 26):
-        freq = 750 + ((key - 65) * 25)
+    elif key in range(65, 91):
+        freq = 710 + ((key - 65) * 20)
+        winsound.Beep(freq, dur)
+    elif key in range(48, 58):
+        freq = 680 + ((key - 48) * 95)
         winsound.Beep(freq, dur)
     return True
 
